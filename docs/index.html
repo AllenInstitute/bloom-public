@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.39">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Rohan Gala">
+<meta name="dcterms.date" content="2025-03-02">
+
+<title>Learning multimodal and multispecies brain cell representations.</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-81e35ebdb4125010edbabe6010586085.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script async="" src="https://hypothes.is/embed.js"></script>
+<script>
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    document.body.classList.add('hypothesis-enabled');
+  });
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+<meta name="citation_title" content="Learning multimodal and multispecies brain cell representations.">
+<meta name="citation_author" content="Rohan Gala">
+<meta name="citation_publication_date" content="2025-03-02">
+<meta name="citation_cover_date" content="2025-03-02">
+<meta name="citation_year" content="2025">
+<meta name="citation_online_date" content="2025-03-02">
+<meta name="citation_language" content="en">
+<meta name="citation_reference" content="citation_title=Simulating 500 million years of evolution with a language model;,citation_author=Thomas Hayes;,citation_author=Roshan Rao;,citation_author=Halil Akin;,citation_author=Nicholas J Sofroniew;,citation_author=Deniz Oktay;,citation_author=Zeming Lin;,citation_author=Robert Verkuil;,citation_author=Vincent Q Tran;,citation_author=Jonathan Deaton;,citation_author=Marius Wiggert;,citation_author=others;,citation_publication_date=2025;,citation_cover_date=2025;,citation_year=2025;,citation_journal_title=Science;,citation_publisher=American Association for the Advancement of Science;">
+<meta name="citation_reference" content="citation_title=Joint inference of discrete cell types and continuous type-specific variability in single-cell datasets with MMIDAS;,citation_author=Yeganeh Marghi;,citation_author=Rohan Gala;,citation_author=Fahimeh Baftizadeh;,citation_author=Uygar Sümbül;,citation_publication_date=2024;,citation_cover_date=2024;,citation_year=2024;,citation_issue=9;,citation_volume=4;,citation_journal_title=Nature Computational Science;,citation_publisher=Nature Publishing Group US New York;">
+<meta name="citation_reference" content="citation_title=A coupled autoencoder approach for multi-modal analysis of cell types;,citation_author=R. Gala;,citation_author=N. Gouwens;,citation_author=Z. Yao;,citation_author=A. Budzillo;,citation_author=O. Penn;,citation_author=B. Tasic;,citation_author=G. Murphy;,citation_author=H. Zeng;,citation_author=U. Sümbül;,citation_publication_date=2019;,citation_cover_date=2019;,citation_year=2019;,citation_volume=32;,citation_conference_title=Advances in neural information processing systems;">
+<meta name="citation_reference" content="citation_title=Learning transferable visual models from natural language supervision;,citation_author=Alec Radford;,citation_author=Jong Wook Kim;,citation_author=Chris Hallacy;,citation_author=Aditya Ramesh;,citation_author=Gabriel Goh;,citation_author=Sandhini Agarwal;,citation_author=Girish Sastry;,citation_author=Amanda Askell;,citation_author=Pamela Mishkin;,citation_author=Jack Clark;,citation_author=Gretchen Krueger;,citation_publication_date=2021;,citation_cover_date=2021;,citation_year=2021;,citation_volume=139;,citation_conference_title=International conference on machine learning;,citation_conference=PMLR;,citation_series_title=Proceedings of machine learning research;">
+<meta name="citation_reference" content="citation_title=Universal cell embeddings: A foundation model for cell biology;,citation_author=Yanay Rosen;,citation_author=Yusuf Roohani;,citation_author=Ayush Agarwal;,citation_author=Leon Samotorčan;,citation_author=Tabula Sapiens Consortium;,citation_author=Stephen R Quake;,citation_author=Jure Leskovec;,citation_publication_date=2023;,citation_cover_date=2023;,citation_year=2023;,citation_journal_title=bioRxiv;,citation_publisher=Cold Spring Harbor Laboratory;">
+<meta name="citation_reference" content="citation_title=Deep generative modeling for single-cell transcriptomics;,citation_author=Romain Lopez;,citation_author=Jeffrey Regier;,citation_author=Michael B Cole;,citation_author=Michael I Jordan;,citation_author=Nir Yosef;,citation_publication_date=2018;,citation_cover_date=2018;,citation_year=2018;,citation_issue=12;,citation_volume=15;,citation_journal_title=Nature methods;,citation_publisher=Nature Publishing Group US New York;">
+<meta name="citation_reference" content="citation_title=From louvain to leiden: Guaranteeing well-connected communities;,citation_author=Vincent A Traag;,citation_author=Ludo Waltman;,citation_author=Nees Jan Van Eck;,citation_publication_date=2019;,citation_cover_date=2019;,citation_year=2019;,citation_issue=1;,citation_volume=9;,citation_journal_title=Scientific reports;,citation_publisher=Nature Publishing Group;">
+<meta name="citation_reference" content="citation_title=Multi-omics single-cell data integration and regulatory inference with graph-linked embedding;,citation_author=Zhi-Jie Cao;,citation_author=Ge Gao;,citation_publication_date=2022;,citation_cover_date=2022;,citation_year=2022;,citation_issue=10;,citation_volume=40;,citation_journal_title=Nature Biotechnology;,citation_publisher=Nature Publishing Group US New York;">
+<meta name="citation_reference" content="citation_title=A foundation model of transcription across human cell types;,citation_author=Xi Fu;,citation_author=Shentong Mo;,citation_author=Alejandro Buendia;,citation_author=Anouchka P Laurent;,citation_author=Anqi Shao;,citation_author=Maria del Mar Alvarez-Torres;,citation_author=Tianji Yu;,citation_author=Jimin Tan;,citation_author=Jiayu Su;,citation_author=Romella Sagatelian;,citation_author=others;,citation_publication_date=2025;,citation_cover_date=2025;,citation_year=2025;,citation_journal_title=Nature;,citation_publisher=Nature Publishing Group UK London;">
+<meta name="citation_reference" content="citation_title=MultiVI: Deep generative model for the integration of multimodal data;,citation_author=Tal Ashuach;,citation_author=Mariano I Gabitto;,citation_author=Rohan V Koodli;,citation_author=Giuseppe-Antonio Saldi;,citation_author=Michael I Jordan;,citation_author=Nir Yosef;,citation_publication_date=2023;,citation_cover_date=2023;,citation_year=2023;,citation_issue=8;,citation_volume=20;,citation_journal_title=Nature Methods;,citation_publisher=Nature Publishing Group US New York;">
+<meta name="citation_reference" content="citation_title=Mapping single-cell atlases throughout metazoa unravels cell type evolution;,citation_author=Alexander J Tarashansky;,citation_author=Jacob M Musser;,citation_author=Margarita Khariton;,citation_author=Pengyang Li;,citation_author=Detlev Arendt;,citation_author=Stephen R Quake;,citation_author=Bo Wang;,citation_publication_date=2021;,citation_cover_date=2021;,citation_year=2021;,citation_volume=10;,citation_journal_title=Elife;,citation_publisher=eLife Sciences Publications, Ltd;">
+<meta name="citation_reference" content="citation_title=Evolutionary-scale prediction of atomic-level protein structure with a language model;,citation_author=Zeming Lin;,citation_author=Halil Akin;,citation_author=Roshan Rao;,citation_author=Brian Hie;,citation_author=Zhongkai Zhu;,citation_author=Wenting Lu;,citation_author=Nikita Smetanin;,citation_author=Robert Verkuil;,citation_author=Ori Kabeli;,citation_author=Yaniv Shmueli;,citation_author=others;,citation_publication_date=2023;,citation_cover_date=2023;,citation_year=2023;,citation_issue=6637;,citation_volume=379;,citation_journal_title=Science;,citation_publisher=American Association for the Advancement of Science;">
+<meta name="citation_reference" content="citation_title=A cross-species generative cell atlas across 1.5 billion years of evolution: The TranscriptFormer single-cell model;,citation_author=James D Pearce;,citation_author=Sara E Simmonds;,citation_author=Gita Mahmoudabadi;,citation_author=Lakshmi Krishnan;,citation_author=Giovanni Palla;,citation_author=Ana-Maria Istrate;,citation_author=Alexander Tarashansky;,citation_author=Benjamin Nelson;,citation_author=Omar Valenzuela;,citation_author=Donghui Li;,citation_author=others;,citation_publication_date=2025;,citation_cover_date=2025;,citation_year=2025;,citation_journal_title=bioRxiv;,citation_publisher=Cold Spring Harbor Laboratory;">
+<meta name="citation_reference" content="citation_title=Towards multimodal foundation models in molecular cell biology;,citation_author=Haotian Cui;,citation_author=Alejandro Tejada-Lapuerta;,citation_author=Maria Brbić;,citation_author=Julio Saez-Rodriguez;,citation_author=Simona Cristea;,citation_author=Hani Goodarzi;,citation_author=Mohammad Lotfollahi;,citation_author=Fabian J Theis;,citation_author=Bo Wang;,citation_publication_date=2025;,citation_cover_date=2025;,citation_year=2025;,citation_issue=8059;,citation_volume=640;,citation_journal_title=Nature;,citation_publisher=Nature Publishing Group UK London;">
+<meta name="citation_reference" content="citation_title=Transformers in single-cell omics: A review and new perspectives;,citation_author=Artur Szałata;,citation_author=Karin Hrovatin;,citation_author=Sören Becker;,citation_author=Alejandro Tejada-Lapuerta;,citation_author=Haotian Cui;,citation_author=Bo Wang;,citation_author=Fabian J Theis;,citation_publication_date=2024;,citation_cover_date=2024;,citation_year=2024;,citation_issue=8;,citation_volume=21;,citation_journal_title=Nature methods;,citation_publisher=Nature Publishing Group US New York;">
+<meta name="citation_reference" content="citation_title=A multimodal conversational agent for DNA, RNA and protein tasks;,citation_author=Bernardo P Almeida;,citation_author=Guillaume Richard;,citation_author=Hugo Dalla-Torre;,citation_author=Christopher Blum;,citation_author=Lorenz Hexemer;,citation_author=Priyanka Pandey;,citation_author=Stefan Laurent;,citation_author=Chandana Rajesh;,citation_author=Marie Lopez;,citation_author=Alexandre Laterre;,citation_author=others;,citation_publication_date=2025;,citation_cover_date=2025;,citation_year=2025;,citation_journal_title=Nature Machine Intelligence;,citation_publisher=Nature Publishing Group;">
+<meta name="citation_reference" content="citation_title=Genome modeling and design across all domains of life with evo 2;,citation_author=Garyk Brixi;,citation_author=Matthew G Durrant;,citation_author=Jerome Ku;,citation_author=Michael Poli;,citation_author=Greg Brockman;,citation_author=Daniel Chang;,citation_author=Gabriel A Gonzalez;,citation_author=Samuel H King;,citation_author=David B Li;,citation_author=Aditi T Merchant;,citation_author=others;,citation_publication_date=2025;,citation_cover_date=2025;,citation_year=2025;,citation_journal_title=BioRxiv;,citation_publisher=Cold Spring Harbor Laboratory;">
+<meta name="citation_reference" content="citation_title=Dnabert-2: Efficient foundation model and benchmark for multi-species genome;,citation_author=Zhihan Zhou;,citation_author=Yanrong Ji;,citation_author=Weijian Li;,citation_author=Pratik Dutta;,citation_author=Ramana Davuluri;,citation_author=Han Liu;,citation_publication_date=2023;,citation_cover_date=2023;,citation_year=2023;,citation_journal_title=arXiv preprint arXiv:2306.15006;">
+<meta name="citation_reference" content="citation_title=Inferring gene regulatory networks from single-cell multiome data using atlas-scale external data;,citation_author=Qiuyue Yuan;,citation_author=Zhana Duren;,citation_publication_date=2024;,citation_cover_date=2024;,citation_year=2024;,citation_journal_title=Nature Biotechnology;,citation_publisher=Nature Publishing Group US New York;">
+</head>
+
+<body>
+
+<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Learning multimodal and multispecies brain cell representations.</h1>
+          </div>
+
+    
+    <div class="quarto-title-meta-container">
+      <div class="quarto-title-meta-column-start">
+            <div class="quarto-title-meta-author">
+          <div class="quarto-title-meta-heading">Author</div>
+          <div class="quarto-title-meta-heading">Affiliation</div>
+          
+                <div class="quarto-title-meta-contents">
+            <p class="author">Rohan Gala </p>
+          </div>
+                <div class="quarto-title-meta-contents">
+                    <p class="affiliation">
+                        Allen Institute for Brain Science
+                      </p>
+                  </div>
+                    </div>
+        
+        <div class="quarto-title-meta">
+
+                      
+                <div>
+            <div class="quarto-title-meta-heading">Published</div>
+            <div class="quarto-title-meta-contents">
+              <p class="date">March 2, 2025</p>
+            </div>
+          </div>
+          
+                
+              </div>
+      </div>
+      <div class="quarto-title-meta-column-end quarto-other-formats-target">
+      </div>
+    </div>
+
+
+
+    <div class="quarto-other-links-text-target">
+    </div>  </div>
+</header><div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
+<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#biology-primer" id="toc-biology-primer" class="nav-link" data-scroll-target="#biology-primer">Biology primer</a></li>
+  <li><a href="#input-corpus" id="toc-input-corpus" class="nav-link" data-scroll-target="#input-corpus">Input corpus</a></li>
+  <li><a href="#motivating-questions" id="toc-motivating-questions" class="nav-link" data-scroll-target="#motivating-questions">Motivating questions</a></li>
+  <li><a href="#domain-specific-ml-landscape" id="toc-domain-specific-ml-landscape" class="nav-link" data-scroll-target="#domain-specific-ml-landscape">Domain specific ML landscape</a></li>
+  <li><a href="#opportunity" id="toc-opportunity" class="nav-link" data-scroll-target="#opportunity">Opportunity</a></li>
+  <li><a href="#model-architecture" id="toc-model-architecture" class="nav-link" data-scroll-target="#model-architecture">Model architecture</a></li>
+  <li><a href="#tasks-and-losses" id="toc-tasks-and-losses" class="nav-link" data-scroll-target="#tasks-and-losses">Tasks and losses</a>
+  <ul class="collapse">
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+</div>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+  
+
+
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>Our vision is to build a large, pre-trained model that recaptures broad cell types, generate experimental hypotheses, and serve as a powerful model for common tasks in zero-shot and fine-tuned settings. Our goal is to build such a model for scRNA-seq and scATACs-seq data.</p>
+<p>These notes are organized to: 1. Provide a quick biology primer to understand some key terminology. 2. Summarize the input corpus for _bloom. 3. Motivate questions that we may address with models. 4. Describe the model, architecture and formal tasks.</p>
+</section>
+<section id="biology-primer" class="level2">
+<h2 class="anchored" data-anchor-id="biology-primer">Biology primer</h2>
+<p><strong>What genes, peaks are, and how are they related to DNA.</strong></p>
+<ul>
+<li>DNA is a polymer composed of a sequence of nucleotides (i.e.&nbsp;A, C, G, T).</li>
+<li>Each cell inherits a copy of DNA.</li>
+<li>DNA sequence is the same for all cells of an individual animal.</li>
+<li>DNA can be thought of as long strings that fold over and are packed in systematic ways.</li>
+<li>The folding pattern affects the accessibility of DNA sub-regions (<em>peaks</em>) to various molecules that operate on DNA (e.g.&nbsp;proteins such as transcription factors, polymerases etc).</li>
+<li>Specific sub-regions of the DNA can be copied over into RNA molecules (<em>genes</em>).</li>
+</ul>
+<p><strong>Why do peaks and genes matter</strong></p>
+<ul>
+<li>Some RNA molecules specify the protein repertoire of a cell.</li>
+<li>Other RNA molecules may interact directly with proteins or with DNA.</li>
+<li>We are interested in understanding the logic of this recursive system (in which DNA, RNA, protein all interact with each other, and determine what the cell is and does).</li>
+<li>Which peaks are accessible, which genes are expressed, which pairs of peaks and genes interact follow a cell type-specific and condition-specific logic.</li>
+<li>Understanding this logic will make it possible to identify cell-type specific determinants of development, disease etc.; and be a step towards identifying molecular targets for various therapies.</li>
+</ul>
+</section>
+<section id="input-corpus" class="level2">
+<h2 class="anchored" data-anchor-id="input-corpus">Input corpus</h2>
+<ul>
+<li>scATAC-seq measures accessibility <span class="math inline">\(\in \{0, 1\}\)</span> of a large set of peaks, about <span class="math inline">\(2 \times 10^6\)</span>, per cell.</li>
+<li>scRNA-seq measures expression <span class="math inline">\(\in [0, ∞)\)</span> level of <span class="math inline">\(10^4\)</span> genes with scRNA-seq.</li>
+<li>Multiome technology enables measurements of all these genes and peaks for any given cell.</li>
+<li>Spatial transcriptomics measures expression level <span class="math inline">\(\in [0, ∞)\)</span> of a smaller subset (500-1000) of genes, but preserves spatial context of cells.</li>
+<li>Spatial context means that we have such measurements of physically nearby cells, and also position of all cells in a brain-specific coordinate space.</li>
+<li>Each cell has associated metadata:
+<ul>
+<li>animal-level metadata (species, developmental status, age, disease status etc.)</li>
+<li>cell-level metadata (brain region the cell was in, cell type labels from primary analysis, etc., physical coordinates in case of spatial transcriptomics etc.)</li>
+<li>technology metadata (<code>10xV2</code>, <code>10xV3</code>, <code>single cell</code> or <code>single nucleus</code>, <code>MERFISH</code> etc.)</li>
+</ul></li>
+</ul>
+</section>
+<section id="motivating-questions" class="level2">
+<h2 class="anchored" data-anchor-id="motivating-questions">Motivating questions</h2>
+<p><strong>Goal: Understand what we want the model to do:</strong></p>
+<ul>
+<li>Learn unsupervised, per-cell representations based on all of this data.</li>
+<li>Representations should re-capture robust cell type relationships.</li>
+<li>Offer zero-shot metadata transfer (cell type labels, development status, disease status etc.)</li>
+<li>Offer insights into how genes and peaks are inter-related (e.g.&nbsp;gene regulatory networks)</li>
+<li>Unobserved data imputation (e.g.&nbsp;provide what peaks are open given spatial transcriptomics input for a subset of genes).</li>
+</ul>
+</section>
+<section id="domain-specific-ml-landscape" class="level2">
+<h2 class="anchored" data-anchor-id="domain-specific-ml-landscape">Domain specific ML landscape</h2>
+<p><strong>Goal: Get to know key model architectures and papers</strong></p>
+<ul>
+<li>Overall strategy to analyze unimodal data (typically only cell x gene tables) with tabular models :
+<ul>
+<li>Pre-select a reduced feature (gene) set.</li>
+<li>Learn a low-d latent space via reconstruction objective.</li>
+<li>Add dataset- or problem-specific structure to the latent space: e.g. <span class="citation" data-cites="lopez2018deep">Lopez et al. (<a href="#ref-lopez2018deep" role="doc-biblioref">2018</a>)</span>.</li>
+<li>Employ independent clustering algorithm to define cell types: e.g. <span class="citation" data-cites="traag2019louvain">Traag, Waltman, and Van Eck (<a href="#ref-traag2019louvain" role="doc-biblioref">2019</a>)</span>.</li>
+<li>Recent approaches combine these steps: e.g. <span class="citation" data-cites="marghi2024joint">Marghi et al. (<a href="#ref-marghi2024joint" role="doc-biblioref">2024</a>)</span>.</li>
+</ul></li>
+<li>Strategy to learn consistent representations from multimodal single-cell data:
+<ul>
+<li>Align latent spaces across modalities: Coupled autoencoders: <span class="citation" data-cites="gala2019coupled">Gala et al. (<a href="#ref-gala2019coupled" role="doc-biblioref">2019</a>)</span>.</li>
+<li>Similar ideas to align scRNA-seq and scATAC-seq: scGLUE: <span class="citation" data-cites="cao2022multi">Cao and Gao (<a href="#ref-cao2022multi" role="doc-biblioref">2022</a>)</span>, multiVI: <span class="citation" data-cites="ashuach2023multivi">Ashuach et al. (<a href="#ref-ashuach2023multivi" role="doc-biblioref">2023</a>)</span>.</li>
+<li>Also related to CLIP: <span class="citation" data-cites="radford2021learning">Radford et al. (<a href="#ref-radford2021learning" role="doc-biblioref">2021</a>)</span> approach to align language and image data; see e.g.&nbsp;<a href="https://openreview.net/pdf?id=KMtM5ZHxct">scCLIP</a></li>
+</ul></li>
+</ul>
+<p>A key limitation of all these approaches is that they ignore the underlying DNA sequence altogether. The following models account for it with different strategies:</p>
+<ul>
+<li>Strategy to account for sequences:
+<ul>
+<li>Use bioinformatics features (binding affinities of curated transcription factors to given DNA sequence): GET: <span class="citation" data-cites="fu2025foundation">Fu et al. (<a href="#ref-fu2025foundation" role="doc-biblioref">2025</a>)</span></li>
+<li>Key limitations of the GET model:
+<ul>
+<li><ol type="1">
+<li>tissue (and not single cell) resolution.</li>
+</ol></li>
+<li><ol start="2" type="1">
+<li>input is ATACseq only.</li>
+</ol></li>
+<li><ol start="3" type="1">
+<li>species specific (only human).</li>
+</ol></li>
+</ul></li>
+</ul></li>
+<li>Strategies to account for sequences and generalizable to multi-species data:
+<ul>
+<li>Pre-determine gene correspondence (a.k.a. homology) across species: SAMap: <span class="citation" data-cites="tarashansky2021mapping">Tarashansky et al. (<a href="#ref-tarashansky2021mapping" role="doc-biblioref">2021</a>)</span>.</li>
+<li>Use encodings of genes derived from protein foundation models (such as ESM2: <span class="citation" data-cites="lin2023evolutionary">Lin et al. (<a href="#ref-lin2023evolutionary" role="doc-biblioref">2023</a>)</span>):</li>
+<li>Examples of such single cell models: UCE: <span class="citation" data-cites="rosen2023universal">Rosen et al. (<a href="#ref-rosen2023universal" role="doc-biblioref">2023</a>)</span>, Transcriptformer: <span class="citation" data-cites="pearce2025cross">Pearce et al. (<a href="#ref-pearce2025cross" role="doc-biblioref">2025</a>)</span>.</li>
+<li>Key limitations of these model:
+<ul>
+<li>designed for single modality, i.e.&nbsp;transcriptomics.</li>
+<li>can only tokenize a subset of genes (i.e.&nbsp;protein coding genes).</li>
+<li>do not use non-coding genes and other regulatory DNA elements.</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="opportunity" class="level2">
+<h2 class="anchored" data-anchor-id="opportunity">Opportunity</h2>
+<ul>
+<li>We have the largest multi-species, multi-modal, across context datasets for brain cells (&gt;10 M cells, growing rapidly).</li>
+<li>Field recognizes that foundation models from such datasets in biology should leverage transformer-like architectures: <span class="citation" data-cites="cui2025towards">Cui et al. (<a href="#ref-cui2025towards" role="doc-biblioref">2025</a>)</span>.</li>
+<li><span class="citation" data-cites="szalata2024transformers">Szałata et al. (<a href="#ref-szalata2024transformers" role="doc-biblioref">2024</a>)</span> is a relevant read for an overview of the design space of Transformers for single-cell -omics.</li>
+<li>DNA/RNA/Protein foundation models now show non-trivial performance across tasks.</li>
+<li>We may be able to connect the model to curated knowledge bases (as part of Allen Institute’s Brain Knowledge Platform (BKP)); see ChatNT: <span class="citation" data-cites="de2025multimodal">Almeida et al. (<a href="#ref-de2025multimodal" role="doc-biblioref">2025</a>)</span> and <a href="https://research.google/blog/teaching-machines-the-language-of-biology-scaling-large-language-models-for-next-generation-single-cell-analysis/">C2S-Scale</a> for inspiration.</li>
+</ul>
+</section>
+<section id="model-architecture" class="level2">
+<h2 class="anchored" data-anchor-id="model-architecture">Model architecture</h2>
+<div id="fig-genes-peaks" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-genes-peaks-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="./assets/genes-peaks.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: Genes and peaks as they relate to DNA sequences"><img src="./assets/genes-peaks.png" class="img-fluid figure-img" width="650"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-genes-peaks-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: <strong>Genes and peaks as they relate to DNA sequences</strong>
+</figcaption>
+</figure>
+</div>
+<ul>
+<li>Our key insight is that peaks and genes can be intuitively and meaningfully <em>tokenized</em> with representations from DNA language models: EVO2: <span class="citation" data-cites="brixi2025genome">Brixi et al. (<a href="#ref-brixi2025genome" role="doc-biblioref">2025</a>)</span>, DNABERT2: <span class="citation" data-cites="zhou2023dnabert">Zhou et al. (<a href="#ref-zhou2023dnabert" role="doc-biblioref">2023</a>)</span>.</li>
+<li>Details of the current architecture are included in the Figure below.</li>
+</ul>
+<div id="fig-bloom-arch" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bloom-arch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="./assets/arch_overview.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;2: Data layout and model architecture"><img src="./assets/arch_overview.png" class="img-fluid figure-img" width="650"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bloom-arch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: <strong>Data layout and model architecture</strong>
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="tasks-and-losses" class="level2">
+<h2 class="anchored" data-anchor-id="tasks-and-losses">Tasks and losses</h2>
+<p><strong>Pre-training</strong></p>
+<ol type="1">
+<li>reconstruct expression</li>
+<li>reconstruct accessibility</li>
+<li>contrastive loss (e.g.&nbsp;same cell with feature subsets vs.&nbsp;other cells in minibatch)</li>
+</ol>
+<p><strong>Fine-tuning</strong></p>
+<p>This would be based on available metadata for brain datasets, below list is likely a subset.</p>
+<p>Classification tasks: 1. cell types 2. regions 3. condition (development, aged, adult) 4. quality (categorical, e.g.&nbsp;high/ low) 5. sex</p>
+<p>Regression tasks: 1. age 2. location (e.g.&nbsp;anterior-posterior) 3. quality (continuous valued QC metrics)</p>
+<p><strong>Zero-shot</strong></p>
+<p>Can use this for model evaluation. Same as pre-training objective, under different settings:</p>
+<ol type="1">
+<li>input is genes, output is genes (difficulty is based on number of input genes)</li>
+<li>input is genes, output is peaks (difficulty is based on which peaks are included as query)</li>
+<li>input is (genes + peaks) output is genes (difficulty is based on input fraction of gene/peak)</li>
+</ol>
+<p>Batch/technology correction? Unclear whether model should/would do this; Could consider this as fine tuning task maybe.</p>
+<p><strong>Interpretability:</strong></p>
+<ol type="1">
+<li>interpret attention matrices as hypotheses of interaction between genes and peaks. For e.g.&nbsp;are interactions between peaks and genes greater / more common within chromosome vs.&nbsp;across chromosomes. See LINGER: <span class="citation" data-cites="yuan2024inferring">Yuan and Duren (<a href="#ref-yuan2024inferring" role="doc-biblioref">2024</a>)</span> for inspiration.</li>
+<li>infer peak sub-sequences (e.g.&nbsp;known tf-motif) contribution to peak embedding.</li>
+<li>predict gene expression with synthetic sequences (relevant for enhancer tools development).</li>
+<li>inspect other concepts learned by the model e.g.&nbsp;via <a href="https://transformer-circuits.pub/2025/attribution-graphs/methods.html">circuit tracing</a></li>
+</ol>
+<section id="discussion" class="level3 unnumbered">
+
+
+</section>
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">Discussion</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-de2025multimodal" class="csl-entry" role="listitem">
+Almeida, Bernardo P de, Guillaume Richard, Hugo Dalla-Torre, Christopher Blum, Lorenz Hexemer, Priyanka Pandey, Stefan Laurent, et al. 2025. <span>“A Multimodal Conversational Agent for DNA, RNA and Protein Tasks.”</span> <em>Nature Machine Intelligence</em>, 1–14.
+</div>
+<div id="ref-ashuach2023multivi" class="csl-entry" role="listitem">
+Ashuach, Tal, Mariano I Gabitto, Rohan V Koodli, Giuseppe-Antonio Saldi, Michael I Jordan, and Nir Yosef. 2023. <span>“MultiVI: Deep Generative Model for the Integration of Multimodal Data.”</span> <em>Nature Methods</em> 20 (8): 1222–31.
+</div>
+<div id="ref-brixi2025genome" class="csl-entry" role="listitem">
+Brixi, Garyk, Matthew G Durrant, Jerome Ku, Michael Poli, Greg Brockman, Daniel Chang, Gabriel A Gonzalez, et al. 2025. <span>“Genome Modeling and Design Across All Domains of Life with Evo 2.”</span> <em>BioRxiv</em>, 2025–02.
+</div>
+<div id="ref-cao2022multi" class="csl-entry" role="listitem">
+Cao, Zhi-Jie, and Ge Gao. 2022. <span>“Multi-Omics Single-Cell Data Integration and Regulatory Inference with Graph-Linked Embedding.”</span> <em>Nature Biotechnology</em> 40 (10): 1458–66.
+</div>
+<div id="ref-cui2025towards" class="csl-entry" role="listitem">
+Cui, Haotian, Alejandro Tejada-Lapuerta, Maria Brbić, Julio Saez-Rodriguez, Simona Cristea, Hani Goodarzi, Mohammad Lotfollahi, Fabian J Theis, and Bo Wang. 2025. <span>“Towards Multimodal Foundation Models in Molecular Cell Biology.”</span> <em>Nature</em> 640 (8059): 623–33.
+</div>
+<div id="ref-fu2025foundation" class="csl-entry" role="listitem">
+Fu, Xi, Shentong Mo, Alejandro Buendia, Anouchka P Laurent, Anqi Shao, Maria del Mar Alvarez-Torres, Tianji Yu, et al. 2025. <span>“A Foundation Model of Transcription Across Human Cell Types.”</span> <em>Nature</em>, 1–9.
+</div>
+<div id="ref-gala2019coupled" class="csl-entry" role="listitem">
+Gala, R., N. Gouwens, Z. Yao, A. Budzillo, O. Penn, B. Tasic, G. Murphy, H. Zeng, and U. Sümbül. 2019. <span>“A Coupled Autoencoder Approach for Multi-Modal Analysis of Cell Types.”</span> In <em>Advances in Neural Information Processing Systems</em>. Vol. 32.
+</div>
+<div id="ref-lin2023evolutionary" class="csl-entry" role="listitem">
+Lin, Zeming, Halil Akin, Roshan Rao, Brian Hie, Zhongkai Zhu, Wenting Lu, Nikita Smetanin, et al. 2023. <span>“Evolutionary-Scale Prediction of Atomic-Level Protein Structure with a Language Model.”</span> <em>Science</em> 379 (6637): 1123–30.
+</div>
+<div id="ref-lopez2018deep" class="csl-entry" role="listitem">
+Lopez, Romain, Jeffrey Regier, Michael B Cole, Michael I Jordan, and Nir Yosef. 2018. <span>“Deep Generative Modeling for Single-Cell Transcriptomics.”</span> <em>Nature Methods</em> 15 (12): 1053–58.
+</div>
+<div id="ref-marghi2024joint" class="csl-entry" role="listitem">
+Marghi, Yeganeh, Rohan Gala, Fahimeh Baftizadeh, and Uygar Sümbül. 2024. <span>“Joint Inference of Discrete Cell Types and Continuous Type-Specific Variability in Single-Cell Datasets with MMIDAS.”</span> <em>Nature Computational Science</em> 4 (9): 706–22.
+</div>
+<div id="ref-pearce2025cross" class="csl-entry" role="listitem">
+Pearce, James D, Sara E Simmonds, Gita Mahmoudabadi, Lakshmi Krishnan, Giovanni Palla, Ana-Maria Istrate, Alexander Tarashansky, et al. 2025. <span>“A Cross-Species Generative Cell Atlas Across 1.5 Billion Years of Evolution: The TranscriptFormer Single-Cell Model.”</span> <em>bioRxiv</em>, 2025–04.
+</div>
+<div id="ref-radford2021learning" class="csl-entry" role="listitem">
+Radford, Alec, Jong Wook Kim, Chris Hallacy, Aditya Ramesh, Gabriel Goh, Sandhini Agarwal, Girish Sastry, et al. 2021. <span>“Learning Transferable Visual Models from Natural Language Supervision.”</span> In <em>International Conference on Machine Learning</em>, 139:8748–63. Proceedings of Machine Learning Research. PMLR.
+</div>
+<div id="ref-rosen2023universal" class="csl-entry" role="listitem">
+Rosen, Yanay, Yusuf Roohani, Ayush Agarwal, Leon Samotorčan, Tabula Sapiens Consortium, Stephen R Quake, and Jure Leskovec. 2023. <span>“Universal Cell Embeddings: A Foundation Model for Cell Biology.”</span> <em>bioRxiv</em>, 2023–11.
+</div>
+<div id="ref-szalata2024transformers" class="csl-entry" role="listitem">
+Szałata, Artur, Karin Hrovatin, Sören Becker, Alejandro Tejada-Lapuerta, Haotian Cui, Bo Wang, and Fabian J Theis. 2024. <span>“Transformers in Single-Cell Omics: A Review and New Perspectives.”</span> <em>Nature Methods</em> 21 (8): 1430–43.
+</div>
+<div id="ref-tarashansky2021mapping" class="csl-entry" role="listitem">
+Tarashansky, Alexander J, Jacob M Musser, Margarita Khariton, Pengyang Li, Detlev Arendt, Stephen R Quake, and Bo Wang. 2021. <span>“Mapping Single-Cell Atlases Throughout Metazoa Unravels Cell Type Evolution.”</span> <em>Elife</em> 10: e66747.
+</div>
+<div id="ref-traag2019louvain" class="csl-entry" role="listitem">
+Traag, Vincent A, Ludo Waltman, and Nees Jan Van Eck. 2019. <span>“From Louvain to Leiden: Guaranteeing Well-Connected Communities.”</span> <em>Scientific Reports</em> 9 (1): 1–12.
+</div>
+<div id="ref-yuan2024inferring" class="csl-entry" role="listitem">
+Yuan, Qiuyue, and Zhana Duren. 2024. <span>“Inferring Gene Regulatory Networks from Single-Cell Multiome Data Using Atlas-Scale External Data.”</span> <em>Nature Biotechnology</em>, 1–11.
+</div>
+<div id="ref-zhou2023dnabert" class="csl-entry" role="listitem">
+Zhou, Zhihan, Yanrong Ji, Weijian Li, Pratik Dutta, Ramana Davuluri, and Han Liu. 2023. <span>“Dnabert-2: Efficient Foundation Model and Benchmark for Multi-Species Genome.”</span> <em>arXiv Preprint arXiv:2306.15006</em>.
+</div>
+</div></section></div></main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>
