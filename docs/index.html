@@ -258,8 +258,8 @@ window.Quarto = {
 <section id="domain-specific-ml-landscape" class="level2">
 <h2 class="anchored" data-anchor-id="domain-specific-ml-landscape">Domain specific ML landscape</h2>
 <p><strong>Goal: Get to know key model architectures and papers</strong></p>
-<section id="strategy-to-analyze-unimodal-data-typically-only-cell-x-gene-tables-with-tabular-models" class="level4">
-<h4 class="anchored" data-anchor-id="strategy-to-analyze-unimodal-data-typically-only-cell-x-gene-tables-with-tabular-models">1. Strategy to analyze unimodal data (typically only cell x gene tables) with tabular models :</h4>
+<section id="tabular-approaches-for-unimodal-data-mainly-scrna-seq" class="level4">
+<h4 class="anchored" data-anchor-id="tabular-approaches-for-unimodal-data-mainly-scrna-seq">1. Tabular approaches for unimodal data (mainly scRNA-seq):</h4>
 <ul>
 <li>Pre-select a reduced feature (gene) set.</li>
 <li>Learn a low-d latent space via reconstruction objective.</li>
@@ -268,8 +268,8 @@ window.Quarto = {
 <li>Recent approaches combine these steps: e.g.&nbsp;MMIDAS: <span class="citation" data-cites="marghi2024joint">Marghi et al. (<a href="#ref-marghi2024joint" role="doc-biblioref">2024</a>)</span>.</li>
 </ul>
 </section>
-<section id="strategy-to-learn-consistent-representations-from-multimodal-single-cell-data" class="level4">
-<h4 class="anchored" data-anchor-id="strategy-to-learn-consistent-representations-from-multimodal-single-cell-data">2. Strategy to learn consistent representations from multimodal single-cell data:</h4>
+<section id="models-for-multimodal-single-cell-data" class="level4">
+<h4 class="anchored" data-anchor-id="models-for-multimodal-single-cell-data">2. Models for multimodal single-cell data:</h4>
 <ul>
 <li>Align latent spaces across modalities: Coupled autoencoders: <span class="citation" data-cites="gala2019coupled">Gala et al. (<a href="#ref-gala2019coupled" role="doc-biblioref">2019</a>)</span>.</li>
 <li>Similar ideas to align scRNA-seq and scATAC-seq: scGLUE: <span class="citation" data-cites="cao2022multi">Cao and Gao (<a href="#ref-cao2022multi" role="doc-biblioref">2022</a>)</span>, multiVI: <span class="citation" data-cites="ashuach2023multivi">Ashuach et al. (<a href="#ref-ashuach2023multivi" role="doc-biblioref">2023</a>)</span>.</li>
@@ -277,8 +277,8 @@ window.Quarto = {
 </ul>
 <p>The above approaches all ignore the underlying DNA sequence.</p>
 </section>
-<section id="strategy-to-account-for-sequences" class="level4">
-<h4 class="anchored" data-anchor-id="strategy-to-account-for-sequences">3. Strategy to account for sequences:</h4>
+<section id="models-that-account-for-sequences" class="level4">
+<h4 class="anchored" data-anchor-id="models-that-account-for-sequences">3. Models that account for sequences:</h4>
 <ul>
 <li>Use bioinformatics features (binding affinities of curated transcription factors to given DNA sequence), e.g.&nbsp;GET: <span class="citation" data-cites="fu2025foundation">Fu et al. (<a href="#ref-fu2025foundation" role="doc-biblioref">2025</a>)</span></li>
 <li>Key limitations of the GET model:
@@ -289,8 +289,8 @@ window.Quarto = {
 </ul></li>
 </ul>
 </section>
-<section id="strategies-to-account-for-sequences-and-generalizable-to-multi-species-data" class="level4">
-<h4 class="anchored" data-anchor-id="strategies-to-account-for-sequences-and-generalizable-to-multi-species-data">4. Strategies to account for sequences and generalizable to multi-species data:</h4>
+<section id="models-that-are-generalizable-to-multi-species-data" class="level4">
+<h4 class="anchored" data-anchor-id="models-that-are-generalizable-to-multi-species-data">4. Models that are generalizable to multi-species data:</h4>
 <ul>
 <li>Pre-determine gene correspondence (a.k.a. homology) across species: SAMap: <span class="citation" data-cites="tarashansky2021mapping">Tarashansky et al. (<a href="#ref-tarashansky2021mapping" role="doc-biblioref">2021</a>)</span>.</li>
 <li>Use encodings of genes derived from protein foundation models (such as ESM2: <span class="citation" data-cites="lin2023evolutionary">Lin et al. (<a href="#ref-lin2023evolutionary" role="doc-biblioref">2023</a>)</span>):</li>
@@ -333,10 +333,10 @@ Figure&nbsp;1: <strong>Genes and peaks as they relate to DNA sequences</strong>
 <div id="fig-bloom-arch" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-bloom-arch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="./assets/arch_overview.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;2: Data layout and model architecture"><img src="./assets/arch_overview.png" class="img-fluid figure-img" width="650"></a>
+<a href="./assets/arch_overview.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;2: Data layout and model architecture Genes and peaks are referred to as features. Feature values are combined with their embeddings from a DNA model, and so E = E_{\tt{value}} + E_{\tt{feature}}. The total number of sampled features per cell adds up to L. The number of cells sampled in the minibatch corresponds to B. L_q features from the same cells in the minibatch are independently sampled to construct the query."><img src="./assets/arch_overview.png" class="img-fluid figure-img" width="650"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bloom-arch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: <strong>Data layout and model architecture</strong>
+Figure&nbsp;2: <strong>Data layout and model architecture</strong> Genes and peaks are referred to as features. Feature values are combined with their embeddings from a DNA model, and so <span class="math inline">\(E = E_{\tt{value}} + E_{\tt{feature}}\)</span>. The total number of sampled features per cell adds up to <span class="math inline">\(L\)</span>. The number of cells sampled in the minibatch corresponds to <span class="math inline">\(B\)</span>. <span class="math inline">\(L_q\)</span> features from the same cells in the minibatch are independently sampled to construct the query.
 </figcaption>
 </figure>
 </div>
