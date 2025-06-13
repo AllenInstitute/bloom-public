@@ -225,15 +225,15 @@ window.Quarto = {
 <li>Other RNA molecules may interact directly with proteins or with DNA.</li>
 <li>We are interested in understanding the logic of this recursive system (in which DNA, RNA, protein all interact with each other, and determine what the cell is and does).</li>
 <li>Which peaks are accessible, which genes are expressed, which pairs of peaks and genes interact follow a cell type-specific and condition-specific logic.</li>
-<li>Understanding this logic will make it possible to identify cell-type specific determinants of development, disease etc.; and be a step towards identifying molecular targets for various therapies.</li>
+<li>Understanding this logic will make it possible to identify cell-type specific determinants of development, disease etc. and be a step towards identifying molecular targets for various therapies.</li>
 </ul>
 </section>
 <section id="input-corpus" class="level2">
 <h2 class="anchored" data-anchor-id="input-corpus">Input corpus</h2>
 <ul>
 <li>scATAC-seq measures accessibility <span class="math inline">\(\in \{0, 1\}\)</span> of a large set of peaks, about <span class="math inline">\(2 \times 10^6\)</span>, per cell.</li>
-<li>scRNA-seq measures expression <span class="math inline">\(\in [0, ∞)\)</span> level of <span class="math inline">\(10^4\)</span> genes with scRNA-seq.</li>
-<li>Multiome technology enables measurements of all these genes and peaks for any given cell.</li>
+<li>scRNA-seq measures expression <span class="math inline">\(\in [0, ∞)\)</span> level of <span class="math inline">\(10^4\)</span> genes, per cell.</li>
+<li>Multiome technology enables measurements of all these genes and peaks for each cell.</li>
 <li>Spatial transcriptomics measures expression level <span class="math inline">\(\in [0, ∞)\)</span> of a smaller subset (500-1000) of genes, but preserves spatial context of cells.</li>
 <li>Spatial context means that we have such measurements of physically nearby cells, and also position of all cells in a brain-specific coordinate space.</li>
 <li>Each cell has associated metadata:
@@ -263,9 +263,9 @@ window.Quarto = {
 <ul>
 <li>Pre-select a reduced feature (gene) set.</li>
 <li>Learn a low-d latent space via reconstruction objective.</li>
-<li>Add dataset- or problem-specific structure to the latent space: e.g. <span class="citation" data-cites="lopez2018deep">Lopez et al. (<a href="#ref-lopez2018deep" role="doc-biblioref">2018</a>)</span>.</li>
-<li>Employ independent clustering algorithm to define cell types: e.g. <span class="citation" data-cites="traag2019louvain">Traag, Waltman, and Van Eck (<a href="#ref-traag2019louvain" role="doc-biblioref">2019</a>)</span>.</li>
-<li>Recent approaches combine these steps: e.g. <span class="citation" data-cites="marghi2024joint">Marghi et al. (<a href="#ref-marghi2024joint" role="doc-biblioref">2024</a>)</span>.</li>
+<li>Add dataset- or problem-specific structure to the latent space: e.g.&nbsp;ScVI: <span class="citation" data-cites="lopez2018deep">Lopez et al. (<a href="#ref-lopez2018deep" role="doc-biblioref">2018</a>)</span>.</li>
+<li>Employ independent clustering algorithm to define cell types: e.g.&nbsp;Leiden clustering: <span class="citation" data-cites="traag2019louvain">Traag, Waltman, and Van Eck (<a href="#ref-traag2019louvain" role="doc-biblioref">2019</a>)</span>.</li>
+<li>Recent approaches combine these steps: e.g.&nbsp;MMIDAS: <span class="citation" data-cites="marghi2024joint">Marghi et al. (<a href="#ref-marghi2024joint" role="doc-biblioref">2024</a>)</span>.</li>
 </ul></li>
 <li>Strategy to learn consistent representations from multimodal single-cell data:
 <ul>
@@ -353,8 +353,20 @@ Figure&nbsp;2: <strong>Data layout and model architecture</strong>
 </ol>
 <p><strong>Fine-tuning</strong></p>
 <p>This would be based on available metadata for brain datasets, below list is likely a subset.</p>
-<p>Classification tasks: 1. cell types 2. regions 3. condition (development, aged, adult) 4. quality (categorical, e.g.&nbsp;high/ low) 5. sex</p>
-<p>Regression tasks: 1. age 2. location (e.g.&nbsp;anterior-posterior) 3. quality (continuous valued QC metrics)</p>
+<p>Classification tasks:</p>
+<ol type="1">
+<li>cell types</li>
+<li>regions</li>
+<li>condition (development, aged, adult)</li>
+<li>quality (categorical, e.g.&nbsp;high/ low)</li>
+<li>sex</li>
+</ol>
+<p>Regression tasks:</p>
+<ol type="1">
+<li>age</li>
+<li>location (e.g.&nbsp;anterior-posterior)</li>
+<li>quality (continuous valued QC metrics)</li>
+</ol>
 <p><strong>Zero-shot</strong></p>
 <p>Can use this for model evaluation. Same as pre-training objective, under different settings:</p>
 <ol type="1">
