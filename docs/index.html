@@ -258,35 +258,39 @@ window.Quarto = {
 <section id="domain-specific-ml-landscape" class="level2">
 <h2 class="anchored" data-anchor-id="domain-specific-ml-landscape">Domain specific ML landscape</h2>
 <p><strong>Goal: Get to know key model architectures and papers</strong></p>
-<ul>
-<li>Overall strategy to analyze unimodal data (typically only cell x gene tables) with tabular models :
+<section id="strategy-to-analyze-unimodal-data-typically-only-cell-x-gene-tables-with-tabular-models" class="level4">
+<h4 class="anchored" data-anchor-id="strategy-to-analyze-unimodal-data-typically-only-cell-x-gene-tables-with-tabular-models">1. Strategy to analyze unimodal data (typically only cell x gene tables) with tabular models :</h4>
 <ul>
 <li>Pre-select a reduced feature (gene) set.</li>
 <li>Learn a low-d latent space via reconstruction objective.</li>
 <li>Add dataset- or problem-specific structure to the latent space: e.g.&nbsp;ScVI: <span class="citation" data-cites="lopez2018deep">Lopez et al. (<a href="#ref-lopez2018deep" role="doc-biblioref">2018</a>)</span>.</li>
 <li>Employ independent clustering algorithm to define cell types: e.g.&nbsp;Leiden clustering: <span class="citation" data-cites="traag2019louvain">Traag, Waltman, and Van Eck (<a href="#ref-traag2019louvain" role="doc-biblioref">2019</a>)</span>.</li>
 <li>Recent approaches combine these steps: e.g.&nbsp;MMIDAS: <span class="citation" data-cites="marghi2024joint">Marghi et al. (<a href="#ref-marghi2024joint" role="doc-biblioref">2024</a>)</span>.</li>
-</ul></li>
-<li>Strategy to learn consistent representations from multimodal single-cell data:
+</ul>
+</section>
+<section id="strategy-to-learn-consistent-representations-from-multimodal-single-cell-data" class="level4">
+<h4 class="anchored" data-anchor-id="strategy-to-learn-consistent-representations-from-multimodal-single-cell-data">2. Strategy to learn consistent representations from multimodal single-cell data:</h4>
 <ul>
 <li>Align latent spaces across modalities: Coupled autoencoders: <span class="citation" data-cites="gala2019coupled">Gala et al. (<a href="#ref-gala2019coupled" role="doc-biblioref">2019</a>)</span>.</li>
 <li>Similar ideas to align scRNA-seq and scATAC-seq: scGLUE: <span class="citation" data-cites="cao2022multi">Cao and Gao (<a href="#ref-cao2022multi" role="doc-biblioref">2022</a>)</span>, multiVI: <span class="citation" data-cites="ashuach2023multivi">Ashuach et al. (<a href="#ref-ashuach2023multivi" role="doc-biblioref">2023</a>)</span>.</li>
 <li>Also related to CLIP: <span class="citation" data-cites="radford2021learning">Radford et al. (<a href="#ref-radford2021learning" role="doc-biblioref">2021</a>)</span> approach to align language and image data; see e.g.&nbsp;<a href="https://openreview.net/pdf?id=KMtM5ZHxct">scCLIP</a></li>
-</ul></li>
 </ul>
-<p>A key limitation of all these approaches is that they ignore the underlying DNA sequence altogether. The following models account for it with different strategies:</p>
+<p>The above approaches all ignore the underlying DNA sequence.</p>
+</section>
+<section id="strategy-to-account-for-sequences" class="level4">
+<h4 class="anchored" data-anchor-id="strategy-to-account-for-sequences">3. Strategy to account for sequences:</h4>
 <ul>
-<li>Strategy to account for sequences:
-<ul>
-<li>Use bioinformatics features (binding affinities of curated transcription factors to given DNA sequence): GET: <span class="citation" data-cites="fu2025foundation">Fu et al. (<a href="#ref-fu2025foundation" role="doc-biblioref">2025</a>)</span></li>
+<li>Use bioinformatics features (binding affinities of curated transcription factors to given DNA sequence), e.g.&nbsp;GET: <span class="citation" data-cites="fu2025foundation">Fu et al. (<a href="#ref-fu2025foundation" role="doc-biblioref">2025</a>)</span></li>
 <li>Key limitations of the GET model:
 <ul>
 <li>tissue (and not single cell) resolution.</li>
 <li>input is ATACseq only.</li>
 <li>species specific (only human).</li>
 </ul></li>
-</ul></li>
-<li>Strategies to account for sequences and generalizable to multi-species data:
+</ul>
+</section>
+<section id="strategies-to-account-for-sequences-and-generalizable-to-multi-species-data" class="level4">
+<h4 class="anchored" data-anchor-id="strategies-to-account-for-sequences-and-generalizable-to-multi-species-data">4. Strategies to account for sequences and generalizable to multi-species data:</h4>
 <ul>
 <li>Pre-determine gene correspondence (a.k.a. homology) across species: SAMap: <span class="citation" data-cites="tarashansky2021mapping">Tarashansky et al. (<a href="#ref-tarashansky2021mapping" role="doc-biblioref">2021</a>)</span>.</li>
 <li>Use encodings of genes derived from protein foundation models (such as ESM2: <span class="citation" data-cites="lin2023evolutionary">Lin et al. (<a href="#ref-lin2023evolutionary" role="doc-biblioref">2023</a>)</span>):</li>
@@ -297,8 +301,8 @@ window.Quarto = {
 <li>can only tokenize a subset of genes (i.e.&nbsp;protein coding genes).</li>
 <li>do not use non-coding genes and other regulatory DNA elements.</li>
 </ul></li>
-</ul></li>
 </ul>
+</section>
 </section>
 <section id="opportunity" class="level2">
 <h2 class="anchored" data-anchor-id="opportunity">Opportunity</h2>
