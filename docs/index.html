@@ -179,7 +179,7 @@ window.Quarto = {
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
   <li><a href="#biology-primer" id="toc-biology-primer" class="nav-link" data-scroll-target="#biology-primer">Biology primer</a></li>
   <li><a href="#input-corpus" id="toc-input-corpus" class="nav-link" data-scroll-target="#input-corpus">Input corpus</a></li>
-  <li><a href="#motivating-questions" id="toc-motivating-questions" class="nav-link" data-scroll-target="#motivating-questions">Motivating questions</a></li>
+  <li><a href="#modeling-goals" id="toc-modeling-goals" class="nav-link" data-scroll-target="#modeling-goals">Modeling goals</a></li>
   <li><a href="#domain-specific-ml-landscape" id="toc-domain-specific-ml-landscape" class="nav-link" data-scroll-target="#domain-specific-ml-landscape">Domain specific ML landscape</a></li>
   <li><a href="#opportunity" id="toc-opportunity" class="nav-link" data-scroll-target="#opportunity">Opportunity</a></li>
   <li><a href="#bloom-architecture" id="toc-bloom-architecture" class="nav-link" data-scroll-target="#bloom-architecture">Bloom architecture</a></li>
@@ -244,15 +244,15 @@ window.Quarto = {
 </ul></li>
 </ul>
 </section>
-<section id="motivating-questions" class="level2">
-<h2 class="anchored" data-anchor-id="motivating-questions">Motivating questions</h2>
-<p><strong>Goal: Understand what we want the model to do:</strong></p>
+<section id="modeling-goals" class="level2">
+<h2 class="anchored" data-anchor-id="modeling-goals">Modeling goals</h2>
 <ul>
 <li>Learn unsupervised, per-cell representations based on all of this data.</li>
 <li>Representations should re-capture robust cell type relationships.</li>
 <li>Offer zero-shot metadata transfer (cell type labels, development status, disease status etc.)</li>
 <li>Offer insights into how genes and peaks are inter-related (e.g.&nbsp;gene regulatory networks)</li>
 <li>Unobserved data imputation (e.g.&nbsp;provide what peaks are open given spatial transcriptomics input for a subset of genes).</li>
+<li>Learn from multi-species data, and be able to transfer knowledge across species.</li>
 </ul>
 </section>
 <section id="domain-specific-ml-landscape" class="level2">
