@@ -182,8 +182,8 @@ window.Quarto = {
   <li><a href="#motivating-questions" id="toc-motivating-questions" class="nav-link" data-scroll-target="#motivating-questions">Motivating questions</a></li>
   <li><a href="#domain-specific-ml-landscape" id="toc-domain-specific-ml-landscape" class="nav-link" data-scroll-target="#domain-specific-ml-landscape">Domain specific ML landscape</a></li>
   <li><a href="#opportunity" id="toc-opportunity" class="nav-link" data-scroll-target="#opportunity">Opportunity</a></li>
-  <li><a href="#model-architecture" id="toc-model-architecture" class="nav-link" data-scroll-target="#model-architecture">Model architecture</a></li>
-  <li><a href="#tasks-and-losses" id="toc-tasks-and-losses" class="nav-link" data-scroll-target="#tasks-and-losses">Tasks and losses</a></li>
+  <li><a href="#bloom-architecture" id="toc-bloom-architecture" class="nav-link" data-scroll-target="#bloom-architecture">Bloom architecture</a></li>
+  <li><a href="#tasks-losses" id="toc-tasks-losses" class="nav-link" data-scroll-target="#tasks-losses">Tasks /Losses</a></li>
   </ul>
 </nav>
 </div>
@@ -210,7 +210,7 @@ window.Quarto = {
 </section>
 <section id="biology-primer" class="level2">
 <h2 class="anchored" data-anchor-id="biology-primer">Biology primer</h2>
-<p><strong>What genes, peaks are, and how are they related to DNA.</strong></p>
+<p><strong>Genes, peaks, and their relation to DNA.</strong></p>
 <ul>
 <li>DNA is a polymer composed of a sequence of nucleotides (i.e.&nbsp;A, C, G, T).</li>
 <li>Each cell inherits a copy of DNA.</li>
@@ -219,7 +219,7 @@ window.Quarto = {
 <li>The folding pattern affects the accessibility of DNA sub-regions (<em>peaks</em>) to various molecules that operate on DNA (e.g.&nbsp;proteins such as transcription factors, polymerases etc).</li>
 <li>Specific sub-regions of the DNA can be copied over into RNA molecules (<em>genes</em>).</li>
 </ul>
-<p><strong>Why do peaks and genes matter</strong></p>
+<p><strong>Why do peaks and genes matter?</strong></p>
 <ul>
 <li>Some RNA molecules specify the protein repertoire of a cell.</li>
 <li>Other RNA molecules may interact directly with proteins or with DNA.</li>
@@ -314,8 +314,8 @@ window.Quarto = {
 <li>We may be able to connect the model to curated knowledge bases (as part of Allen Institute’s Brain Knowledge Platform (BKP)); see ChatNT: <span class="citation" data-cites="de2025multimodal">Almeida et al. (<a href="#ref-de2025multimodal" role="doc-biblioref">2025</a>)</span> and <a href="https://research.google/blog/teaching-machines-the-language-of-biology-scaling-large-language-models-for-next-generation-single-cell-analysis/">C2S-Scale</a> for inspiration.</li>
 </ul>
 </section>
-<section id="model-architecture" class="level2">
-<h2 class="anchored" data-anchor-id="model-architecture">Model architecture</h2>
+<section id="bloom-architecture" class="level2">
+<h2 class="anchored" data-anchor-id="bloom-architecture">Bloom architecture</h2>
 <div id="fig-genes-peaks" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-genes-peaks-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -341,8 +341,8 @@ Figure&nbsp;2: <strong>Data layout and model architecture</strong> Genes and pea
 </figure>
 </div>
 </section>
-<section id="tasks-and-losses" class="level2">
-<h2 class="anchored" data-anchor-id="tasks-and-losses">Tasks and losses</h2>
+<section id="tasks-losses" class="level2">
+<h2 class="anchored" data-anchor-id="tasks-losses">Tasks /Losses</h2>
 <p><strong>Pre-training</strong></p>
 <ol type="1">
 <li>reconstruct expression</li>
